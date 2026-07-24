@@ -1,6 +1,6 @@
 # Suno Bulk Downloader (десктоп-апка)
 
-![Suno Bulk Downloader](ui.png)
+![Suno Bulk Downloader](UI.png)
 
 Апка масово завантажує пісні з твого проєкту/workspace на suno.com: для кожної пісні зберігає MP3, обкладинку (JPEG), JSON з усіма даними та TXT з назвою/промптом/тегами.
 
