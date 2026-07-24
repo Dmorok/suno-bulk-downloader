@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<title>Suno Bulk Downloader</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <h1>🎵 Suno Bulk Downloader</h1>
+    <p class="subtitle">Масове завантаження пісень (MP3 + обкладинка + JSON + TXT) з твого проєкту на suno.com</p>
+
+    <div class="step">
+      <div class="step-label">1. Увійди в акаунт Suno</div>
+      <div class="row">
+        <button id="loginBtn">🔑 Увійти в Suno</button>
+        <button id="recheckBtn" title="Перевірити зараз, чи вже залогінений, без повторного відкриття вікна">🔍 Перевірити</button>
+        <span id="authStatus" class="status status-off">не увійшов</span>
+      </div>
+      <p class="hint">
+        Вікно логіну ізольоване від твого звичайного браузера — перший раз треба увійти саме в ньому (навіть якщо ти вже залогінений у Chrome/Safari). Сесія збережеться між запусками апки.
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="step-label">2. Обери проєкт</div>
+
+      <div class="mode-switch">
+        <label class="mode-option">
+          <input type="radio" name="mode" id="modeAuto" checked />
+          🔍 Автопошук проєктів
+        </label>
+        <label class="mode-option">
+          <input type="radio" name="mode" id="modeManual" />
+          ✍️ Вручну (посилання)
+        </label>
+      </div>
+
+      <div id="autoModeBlock" class="mode-block">
+        <div class="row">
+          <select id="projectSelect">
+            <option value="">— список проєктів порожній —</option>
+          </select>
+          <button id="refreshBtn" title="Оновити список проєктів">🔄</button>
+          <button id="toggleWindowBtn" title="Показати/сховати вікно Suno">👀</button>
+        </div>
+        <p class="hint">
+          Список визначається автоматично, поки ти залогінений (офіційного API в Suno для цього немає — це найкраще можливе визначення).
+          Якщо проєкту немає в списку — натисни 👀, полистай свої проєкти в вікні Suno кілька секунд, потім 🔄.
+        </p>
+      </div>
+
+      <div id="manualModeBlock" class="mode-block hidden">
+        <input id="projectUrl" type="text" placeholder="https://suno.com/... ?wid=xxxxxxxx-xxxx-...." />
+        <p class="hint">Встав повну адресу свого проєкту з адресного рядка браузера (має містити <code>?wid=</code>).</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">3. Обери папку, куди зберігати файли</div>
+      <div class="row">
+        <button id="folderBtn">📂 Обрати папку</button>
+        <span id="folderPath" class="status status-off">папку не обрано</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="row">
+        <button id="startBtn" disabled>▶️ Почати завантаження</button>
+        <button id="cancelBtn" disabled>⏹ Скасувати</button>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+        <span id="progressText"></span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">Журнал</div>
+      <pre id="log" class="log"></pre>
+    </div>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>

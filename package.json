@@ -1,0 +1,39 @@
+{
+  "name": "suno-bulk-downloader",
+  "version": "2.0.0",
+  "description": "Desktop app for bulk downloading songs (MP3 + cover + JSON + TXT) from a Suno.com project/workspace, with auto-detected workspace dropdown or manual URL input",
+  "main": "main.js",
+  "author": "",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win portable --x64",
+    "build:mac": "electron-builder --mac dir",
+    "build:all": "electron-builder -mw"
+  },
+  "build": {
+    "appId": "com.local.sunobulkdownloader",
+    "productName": "Suno Bulk Downloader",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "portable"
+    },
+    "mac": {
+      "target": "dir",
+      "category": "public.app-category.music"
+    }
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3"
+  }
+}
